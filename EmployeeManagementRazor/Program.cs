@@ -1,3 +1,6 @@
+using EmployeeManagementRazor.Services.Interfaces;
+using EmployeeManagementRazor.Services.Repositories;
+
 namespace EmployeeManagementRazor
 {
     public class Program
@@ -8,6 +11,7 @@ namespace EmployeeManagementRazor
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
 
             var app = builder.Build();
 
