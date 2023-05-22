@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementRazor", "EmployeeManagementRazor\EmployeeManagementRazor.csproj", "{38FF0659-F863-45B3-960C-4F71E1A3E440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagementRazor", "EmployeeManagementRazor\EmployeeManagementRazor.csproj", "{38FF0659-F863-45B3-960C-4F71E1A3E440}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementRazor.Models", "EmployeeManagementRazor.Models\EmployeeManagementRazor.Models.csproj", "{7FD16F7F-176A-47FA-8B08-73B6270738B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagementRazor.Models", "EmployeeManagementRazor.Models\EmployeeManagementRazor.Models.csproj", "{7FD16F7F-176A-47FA-8B08-73B6270738B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementRazor.Services", "EmployeeManagementRazor.Services\EmployeeManagementRazor.Services.csproj", "{66C1D8BA-3C1E-4297-9785-29185025C3A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagementRazor.Services", "EmployeeManagementRazor.Services\EmployeeManagementRazor.Services.csproj", "{66C1D8BA-3C1E-4297-9785-29185025C3A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

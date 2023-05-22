@@ -11,6 +11,12 @@ namespace EmployeeManagementRazor
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.Configure<RouteOptions>(options =>
+            {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+                options.AppendTrailingSlash = true;
+            });
             builder.Services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
 
             var app = builder.Build();

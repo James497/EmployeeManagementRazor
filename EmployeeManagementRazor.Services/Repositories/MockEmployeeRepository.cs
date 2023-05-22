@@ -20,6 +20,12 @@ namespace EmployeeManagementRazor.Services.Repositories
                     Email = "david@pragimtech.com" },
             };
         }
+
+        public Employee GetEmployee(int id)
+        {
+            return _employeeList.FirstOrDefault(x => x.Id == id);    
+        }
+
         public IEnumerable<Employee> GetAllEmployees()
         {
             return _employeeList;
