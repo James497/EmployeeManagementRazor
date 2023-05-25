@@ -1,5 +1,6 @@
 using EmployeeManagementRazor.Models;
 using EmployeeManagementRazor.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeeManagementRazor.Pages.Employees
@@ -13,9 +14,14 @@ namespace EmployeeManagementRazor.Pages.Employees
         {
             _employeeRepository = employeeRepository;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             Employee = _employeeRepository.GetEmployee(id);
+            if(Employee == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+            return Page();
         }
     }
 }
