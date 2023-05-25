@@ -39,6 +39,7 @@ namespace EmployeeManagementRazor.Services.Repositories
                 emp.Name = updatedEmployee.Name;
                 emp.Email = updatedEmployee.Email;
                 emp.Department = updatedEmployee.Department;
+                emp.PhotoPath = updatedEmployee.PhotoPath;
             }
             return emp;
         }
