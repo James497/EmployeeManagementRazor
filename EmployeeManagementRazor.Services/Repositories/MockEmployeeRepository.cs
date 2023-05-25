@@ -30,5 +30,17 @@ namespace EmployeeManagementRazor.Services.Repositories
         {
             return _employeeList;
         }
+
+        public Employee Update(Employee updatedEmployee)
+        {
+            var emp = _employeeList.FirstOrDefault(e => e.Id == updatedEmployee.Id);
+            if(emp != null)
+            {
+                emp.Name = updatedEmployee.Name;
+                emp.Email = updatedEmployee.Email;
+                emp.Department = updatedEmployee.Department;
+            }
+            return emp;
+        }
     }
 }
