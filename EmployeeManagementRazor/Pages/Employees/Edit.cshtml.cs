@@ -17,8 +17,8 @@ namespace EmployeeManagementRazor.Pages.Employees
             _employeeRepository = employeeRepository;
             this.webHostEnvironment = webHostEnvironment;
         }
-
-        public Employee Employee { get; private set; }
+        [BindProperty]
+        public Employee Employee { get; set; }
 
         public IActionResult OnGet(int id)
         {
@@ -32,27 +32,31 @@ namespace EmployeeManagementRazor.Pages.Employees
         // We use this property to store and process
         // the newly uploaded photo
         [BindProperty]
-        public IFormFile Photo { get; set; }
-        public IActionResult OnPost(Employee employee)
+        public IFormFile? Photo { get; set; }
+        public IActionResult OnPost()
         {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
             if (Photo != null)
             {
                 // If a new photo is uploaded, the existing photo must be
                 // deleted. So check if there is an existing photo and delete
-                if (employee.PhotoPath != null)
+                if (Employee.PhotoPath != null)
                 {
                     string filePath = Path.Combine(webHostEnvironment.WebRootPath,
-                        "images", employee.PhotoPath);
-                    if(Path.Exists(filePath))
+                        "images", Employee.PhotoPath);
+                    if (Path.Exists(filePath))
                     {
                         System.IO.File.Delete(filePath);
                     }
                 }
                 // Save the new photo in wwwroot/images folder and update
                 // PhotoPath property of the employee object
-                employee.PhotoPath = ProcessUploadedFile();
+                Employee.PhotoPath = ProcessUploadedFile();
             }
-            Employee = _employeeRepository.Update(employee);
+            Employee = _employeeRepository.Update(Employee);
             return RedirectToPage("/Index");
         }
         private string ProcessUploadedFile()
