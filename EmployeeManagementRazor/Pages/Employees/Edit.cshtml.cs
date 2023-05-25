@@ -1,6 +1,5 @@
 using EmployeeManagementRazor.Models;
 using EmployeeManagementRazor.Services.Interfaces;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,9 +19,16 @@ namespace EmployeeManagementRazor.Pages.Employees
         [BindProperty]
         public Employee Employee { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int? id)
         {
-            Employee = _employeeRepository.GetEmployee(id);
+            if(id.HasValue)
+            {
+                Employee = _employeeRepository.GetEmployee(id.Value);
+            }
+            else
+            {
+                Employee = new Employee();
+            }
             if (Employee == null)
             {
                 return RedirectToPage("/NotFound");
@@ -56,7 +62,14 @@ namespace EmployeeManagementRazor.Pages.Employees
                 // PhotoPath property of the employee object
                 Employee.PhotoPath = ProcessUploadedFile();
             }
-            Employee = _employeeRepository.Update(Employee);
+            if (Employee.Id > 0)
+            {
+                Employee = _employeeRepository.Update(Employee);
+            }
+            else
+            {
+                Employee = _employeeRepository.Add(Employee);
+            }
             return RedirectToPage("/Index");
         }
         private string ProcessUploadedFile()
