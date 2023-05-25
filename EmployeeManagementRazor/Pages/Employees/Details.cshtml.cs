@@ -14,6 +14,9 @@ namespace EmployeeManagementRazor.Pages.Employees
         {
             _employeeRepository = employeeRepository;
         }
+
+        [TempData]
+        public string Message { get; set; }
         public IActionResult OnGet(int id)
         {
             Employee = _employeeRepository.GetEmployee(id);

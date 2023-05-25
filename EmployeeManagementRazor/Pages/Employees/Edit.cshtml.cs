@@ -72,5 +72,25 @@ namespace EmployeeManagementRazor.Pages.Employees
 
             return uniqueFileName;
         }
+
+        [BindProperty]
+        public bool Notify { get; set; }
+
+        public string Message { get; set; }
+        public IActionResult OnPostUpdateNotificationPreferences(int id)
+        {
+            if (Notify)
+            {
+                Message = "Thank you for turning on notifications";
+            }
+            else
+            {
+                Message = "You have turned off email notifications";
+            }
+
+            TempData["message"] = Message;
+            return RedirectToPage("Details", new { id = id });
+        }
+
     }
 }
