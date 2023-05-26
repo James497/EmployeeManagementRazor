@@ -61,9 +61,14 @@ namespace EmployeeManagementRazor.Services.Repositories
 
             return employeeToDelete;
         }
-        public IEnumerable<DeptHeadCount> EmployeeCountByDept()
+        public IEnumerable<DeptHeadCount> EmployeeCountByDept(Dept? dept)
         {
-            return _employeeList.GroupBy(e => e.Department)
+            IEnumerable<Employee> employees = _employeeList;
+            if(dept.HasValue)
+            {
+                employees = employees.Where(x => x.Department == dept.Value).ToList();
+            }
+            return employees.GroupBy(e => e.Department)
                             .Select(g => new DeptHeadCount()
                             {
                                 Department = g.Key.Value,

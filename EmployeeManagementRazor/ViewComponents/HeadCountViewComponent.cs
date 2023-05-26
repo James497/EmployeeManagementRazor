@@ -1,4 +1,5 @@
-﻿using EmployeeManagementRazor.Services.Interfaces;
+﻿using EmployeeManagementRazor.Models;
+using EmployeeManagementRazor.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementRazor.ViewComponents
@@ -12,9 +13,9 @@ namespace EmployeeManagementRazor.ViewComponents
             this.employeeRepository = employeeRepository;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(Dept? department = null)
         {
-            var result = employeeRepository.EmployeeCountByDept();
+            var result = employeeRepository.EmployeeCountByDept(department);
             return View(result);
         }
     }
