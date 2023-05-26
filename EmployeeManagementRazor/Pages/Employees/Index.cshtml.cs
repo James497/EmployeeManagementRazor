@@ -14,9 +14,11 @@ namespace EmployeeManagementRazor.Pages.Employees
         {
             _employeeRepository = employeeRepository;
         }
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
         public void OnGet()
         {
-            Employees = _employeeRepository.GetAllEmployees();
+            Employees = _employeeRepository.Search(SearchTerm);
         }
     }
 }
