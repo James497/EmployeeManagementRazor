@@ -1,5 +1,7 @@
+using EmployeeManagementRazor.Services.Data;
 using EmployeeManagementRazor.Services.Interfaces;
 using EmployeeManagementRazor.Services.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementRazor
 {
@@ -17,7 +19,11 @@ namespace EmployeeManagementRazor
                 options.LowercaseQueryStrings = true;
                 options.AppendTrailingSlash = true;
             });
-            builder.Services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            builder.Services.AddDbContextPool<AppDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnectionRazor"));
+            });
+            builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
             var app = builder.Build();
 
