@@ -1,6 +1,7 @@
 using EmployeeManagementRazor.Services.Data;
 using EmployeeManagementRazor.Services.Interfaces;
 using EmployeeManagementRazor.Services.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementRazor
@@ -23,6 +24,8 @@ namespace EmployeeManagementRazor
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnectionRazor"));
             });
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
             var app = builder.Build();
@@ -41,6 +44,7 @@ namespace EmployeeManagementRazor
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();
