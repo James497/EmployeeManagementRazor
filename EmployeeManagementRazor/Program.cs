@@ -23,8 +23,10 @@ namespace EmployeeManagementRazor
             builder.Services.AddDbContextPool<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDBConnectionRazor"));
+                
             });
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
             builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
