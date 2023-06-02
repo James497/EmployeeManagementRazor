@@ -1,4 +1,5 @@
 using EmployeeManagementRazor.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 
 namespace EmployeeManagementRazor.Pages.Users
 {
+    [Authorize(Roles = "Admin,Manager")]
     public class AssignClaimsModel : PageModel
     {
         private readonly UserManager<IdentityUser> userManager;

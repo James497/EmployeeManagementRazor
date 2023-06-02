@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace EmployeeManagementRazor.Pages.Users
 {
+    [Authorize(Roles = "Admin,Manager")]
     public class AssignRolesModel : PageModel
     {
         private readonly UserManager<IdentityUser> userManager;
