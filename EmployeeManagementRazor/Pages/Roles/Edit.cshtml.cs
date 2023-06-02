@@ -8,9 +8,12 @@ namespace EmployeeManagementRazor.Pages.Roles
     public class EditModel : PageModel
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        public EditModel(RoleManager<IdentityRole> roleManager)
+        private readonly UserManager<IdentityUser> userManager;
+
+        public EditModel(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
         }
         [BindProperty]
         public RoleModel roleModel { get; set; }
@@ -24,6 +27,10 @@ namespace EmployeeManagementRazor.Pages.Roles
                     Id = id,
                     RoleName = role.Name
                 };
+                roleModel.Users.Clear();
+                //Map users
+                var users = await userManager.GetUsersInRoleAsync(role.Name!);
+                roleModel.Users = users.Select(x => x.UserName!).ToList();
             }
             if (roleModel == null)
             {
@@ -68,5 +75,6 @@ namespace EmployeeManagementRazor.Pages.Roles
         public string? Id { get; set; }
         [Required]
         public string RoleName { get; set; }
+        public List<string> Users { get; set; } = new List<string>();
     }
 }

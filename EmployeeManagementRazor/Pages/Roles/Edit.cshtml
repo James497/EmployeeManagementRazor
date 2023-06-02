@@ -6,7 +6,7 @@
 }
 <div asp-validation-summary="All" class="text-danger"></div>
 <form method="post" class="mt-3" enctype="multipart/form-data">
-    @if(!string.IsNullOrEmpty(Model.roleModel.Id))
+    @if (!string.IsNullOrEmpty(Model.roleModel.Id))
     {
         <div class="form-group row">
             <label asp-for="roleModel.Id" class="col-sm-2 col-form-label"></label>
@@ -29,6 +29,30 @@
             <a asp-page="/Employees/Index" class="btn btn-primary">Cancel</a>
         </div>
     </div>
+    @if (!string.IsNullOrEmpty(Model.roleModel.Id))
+    {
+        <div class="card">
+            <div class="card-header">
+                <h3>Users in this role</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.roleModel.Users.Any())
+                {
+                    foreach (var user in Model.roleModel.Users)
+                    {
+                        <h5 class="card-title">@user</h5>
+                    }
+                }
+                else
+                {
+                    <h5 class="card-title">None at the moment</h5>
+                }
+            </div>
+            <div class="card-footer">
+                <a asp-page="/Roles/Assign" asp-route-roleId="@Model.roleModel.Id" class="btn btn-primary" style="width:auto">Add or Remove Users</a>
+            </div>
+        </div>
+    }
 </form>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
