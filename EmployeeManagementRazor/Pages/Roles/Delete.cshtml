@@ -1,0 +1,14 @@
+﻿@page
+@model EmployeeManagementRazor.Pages.Roles.DeleteModel
+@{
+    ViewData["Title"] = "Delete Role";
+}
+<div class="alert alert-danger">
+    <h5>Are you sure you want to delete role - @Model.roleModel.RoleName</h5>
+    <form method="post">
+        <input asp-for="roleModel.Id" hidden />
+        <input asp-for="roleModel.RoleName" hidden />
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="/Roles/Index" class="btn btn-primary">No</a>
+    </form>
+</div>
