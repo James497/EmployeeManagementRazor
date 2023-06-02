@@ -22,7 +22,7 @@
             </div>
             <div class="card-footer">
                 <a asp-page="edit" asp-route-userId="@user.Id" class="btn btn-danger">Edit</a>
-                <a asp-page="delete" class="btn btn-danger">Delete</a>
+                <a asp-page="delete" asp-route-userId="@user.Id" class="btn btn-danger">Delete</a>
             </div>
         </div>
     }

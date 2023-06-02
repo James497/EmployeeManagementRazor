@@ -1,0 +1,15 @@
+﻿@page
+@model EmployeeManagementRazor.Pages.Users.DeleteModel
+@{
+    ViewData["Title"] = "Delete User";
+}
+<div class="alert alert-danger">
+    <h5>Are you sure you want to delete employee - @Model.userModel.UserName</h5>
+    <form method="post">
+        <input asp-for="userModel.Id" hidden/>
+        <input asp-for="userModel.UserName" hidden />
+        <input asp-for="userModel.Email" hidden />
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="/Users/Index" class="btn btn-primary">No</a>
+    </form>
+</div>
