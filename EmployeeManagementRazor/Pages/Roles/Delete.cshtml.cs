@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace EmployeeManagementRazor.Pages.Roles
 {
+    [Authorize(Roles = "Admin,Manager")]
+    [Authorize(Policy = "DeleteRolePolicy")]
     public class DeleteModel : PageModel
     {
         private readonly RoleManager<IdentityRole> roleManager;

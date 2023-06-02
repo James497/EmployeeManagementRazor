@@ -34,6 +34,7 @@ namespace EmployeeManagementRazor
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();
+                options.AddPolicy("DeleteRolePolicy", policy => policy.RequireClaim("Delete Role"));
             });
             builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
