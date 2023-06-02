@@ -135,6 +135,10 @@ namespace EmployeeManagementRazor.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            return RedirectToPage("/Users/Index");
+                        }
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
