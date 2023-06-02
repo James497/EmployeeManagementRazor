@@ -1,10 +1,12 @@
 using EmployeeManagementRazor.Models;
 using EmployeeManagementRazor.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeeManagementRazor.Pages.Employees
 {
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {
         public IEnumerable<Employee> Employees { get; set; }

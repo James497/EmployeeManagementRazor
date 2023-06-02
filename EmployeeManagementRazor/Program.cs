@@ -1,6 +1,7 @@
 using EmployeeManagementRazor.Services.Data;
 using EmployeeManagementRazor.Services.Interfaces;
 using EmployeeManagementRazor.Services.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,12 @@ namespace EmployeeManagementRazor
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
+            builder.Services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
             builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
             var app = builder.Build();
