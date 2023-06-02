@@ -16,8 +16,8 @@
         </div>
     }
     <div class="col-sm-8">
-       @* @await Component.InvokeAsync("HeadCount", new { department = Model.Employee.Department })*@
-       <vc:head-count department="Model.Employee.Department"></vc:head-count>
+        @* @await Component.InvokeAsync("HeadCount", new { department = Model.Employee.Department })*@
+        <vc:head-count department="Model.Employee.Department"></vc:head-count>
     </div>
     <div class="col-sm-8">
         <div class="card">
@@ -36,11 +36,13 @@
             <div class="card-footer text-center">
                 <a asp-page="index"
                    class="btn btn-primary">Back</a>
-                <a asp-page="edit" asp-route-ID="@Model.Employee.Id" class="btn btn-primary">Edit</a>
+                @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+                {
+                    <a asp-page="edit" asp-route-ID="@Model.Employee.Id" class="btn btn-primary">Edit</a>
 
-                <a asp-page="/Employees/Delete" asp-route-ID="@Model.Employee.Id"
-                   class="btn btn-danger">Delete</a>
-
+                    <a asp-page="/Employees/Delete" asp-route-ID="@Model.Employee.Id"
+                       class="btn btn-danger">Delete</a>
+                }
             </div>
         </div>
     </div>

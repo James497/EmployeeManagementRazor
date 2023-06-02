@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeeManagementRazor.Pages
@@ -13,10 +14,9 @@ namespace EmployeeManagementRazor.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            RedirectToPage("/Employees");
-            return;
+            return RedirectToPage("/Employees/Index");
         }
     }
 }

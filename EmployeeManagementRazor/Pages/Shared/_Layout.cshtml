@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">     
+                    <ul class="navbar-nav flex-grow-1">
                         @*Employees*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,17 +33,21 @@
                             </ul>
                         </li>
                         @*Roles*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Manage Roles
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li> <a class="dropdown-item" asp-area="" asp-page="/Roles/Index">Roles</a></li>
-                                <li><a class="dropdown-item" href="@(ViewContext.HttpContext.Request.PathBase)/Roles/Edit">Add Roles</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
+                        @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Manage Roles
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a class="dropdown-item" asp-area="" asp-page="/Roles/Index">Roles</a></li>
+                                    <li><a class="dropdown-item" href="@(ViewContext.HttpContext.Request.PathBase)/Roles/Edit">Add Roles</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        }
+
                         @*Privacy*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>

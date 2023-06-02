@@ -17,11 +17,13 @@
     {
         <div class="card-footer text-center">
             <a asp-page="/Employees/Details" asp-route-ID="@Model.Id" class="btn btn-primary m-1">View</a>
-            <a asp-page="/Employees/Edit" asp-route-ID="@Model.Id" class="btn btn-primary m-1">Edit</a>
+            @if (User != null && (User.IsInRole("Admin") || User.IsInRole("Manager")))
+            {
+                <a asp-page="/Employees/Edit" asp-route-ID="@Model.Id" class="btn btn-primary m-1">Edit</a>
 
-            <a asp-page="/Employees/Delete" asp-route-ID="@Model.Id"
-               class="btn btn-danger m-1">Delete</a>
-
+                <a asp-page="/Employees/Delete" asp-route-ID="@Model.Id"
+                   class="btn btn-danger m-1">Delete</a>
+            }
         </div>
     }
 

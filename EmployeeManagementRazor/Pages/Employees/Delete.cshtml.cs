@@ -1,10 +1,12 @@
 using EmployeeManagementRazor.Models;
 using EmployeeManagementRazor.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EmployeeManagementRazor.Pages.Employees
 {
+    [Authorize(Roles ="Admin,Manager")]
     public class DeleteModel : PageModel
     {
         private readonly IEmployeeRepository employeeRepository;
